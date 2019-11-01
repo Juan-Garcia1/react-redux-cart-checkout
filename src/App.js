@@ -1,46 +1,17 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { connect } from "react-redux";
-// import { showGreeting } from "./actions/sampleActions";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Cart from "./components/cart";
+import Products from "./components/products";
 
-function App(props) {
-  const { greeting } = props.sample;
+function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{greeting}</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <br />
-        <a
-          className="App-link"
-          href="https://redux.js.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Redux
-        </a>
-      </header>
+      <Router>
+        <Route exact path="/" component={Products} />
+        <Route path="/checkout" component={Cart} />
+      </Router>
     </div>
   );
 }
-
-const mapStateToProps = state => {
-  return {
-    sample: state.sample
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  {}
-  // dispatcher goes here { showGreeting }
-)(App);
+export default App;

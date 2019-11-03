@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addToCart } from "../../actions/cartActions";
+// import { addToCart } from "../../actions/cartActions";
 import { Link } from "react-router-dom";
 
 const Products = props => {
@@ -8,19 +8,21 @@ const Products = props => {
   function priceItem(item) {
     return `$${item.toFixed(2)}`;
   }
-  function addItemToCart(productItem) {
-    props.addToCart(productItem);
-  }
+  // function addItemToCart(productItem) {
+  //   props.addToCart(productItem);
+  // }
   return (
     <header className="App-header">
       <Link to="/checkout">check cart</Link>
       {productItems.map(productItem => (
         <div key={productItem.id}>
-          <span>{productItem.name}</span>{" "}
+          <Link to={`product/${productItem.id}`}>
+            <span>{productItem.name}</span>
+          </Link>{" "}
           <span>{priceItem(productItem.price)}</span>{" "}
-          <button onClick={() => addItemToCart(productItem)}>
+          {/* <button onClick={() => addItemToCart(productItem)}>
             add to cart
-          </button>
+          </button> */}
         </div>
       ))}
     </header>
@@ -35,5 +37,6 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addToCart }
+  {}
+  // { addToCart }
 )(Products);
